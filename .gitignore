@@ -19,9 +19,14 @@ mdout.mdp
 md.mdp.bak
 
 # ─── Coordinate / structure files that contain unpublished system data ───────
+# (Exceptions: docs/images/ for diagrams tracked in git — see below)
 *.pdb
 *.mol2
 *.sdf
+
+# ─── User input directory (system-specific, unpublished) ─────────────────────
+input/*
+!input/README.md
 
 # ─── Output directories (simulation results — never commit these) ─────────────
 work/
@@ -36,12 +41,13 @@ output/
 *.dat
 analysis/
 
-# ─── Plots ───────────────────────────────────────────────────────────────────
+# ─── Plots / images (exceptions: docs/images/ for repo diagrams) ─────────────
 *.png
 *.pdf
 *.svg
 *.jpg
 *.jpeg
+!docs/images/**
 
 # ─── Archives ────────────────────────────────────────────────────────────────
 *.zip
@@ -72,4 +78,3 @@ Thumbs.db
 
 # ─── Config override (users copy config.env.example → config/config.env) ────
 config/config.env
-

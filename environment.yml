@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# environment.yml
+#
+# Conda environment for the GROMACS Protein–Ligand MD Protocol.
+# Reproduces the exact software stack used to develop and test the protocol.
+#
+# Usage:
+#   conda env create -f environment.yml
+#   conda activate gmx2024
+#
+# To export your active environment (for locking exact versions):
+#   conda env export > environment.yml
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: gmx2024
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  # ── Core simulation engine ─────────────────────────────────────────────────
+  - gromacs=2024.3          # GROMACS MD engine (GPU build via conda-forge)
+
+  # ── GPU acceleration ───────────────────────────────────────────────────────
+  # Uncomment the line matching your CUDA driver (check: nvidia-smi)
+  # - cudatoolkit=12.2      # CUDA 12.x (driver ≥ 525)
+  # - cudatoolkit=11.8      # CUDA 11.x (driver ≥ 450)
+
+  # ── Shell and scripting ────────────────────────────────────────────────────
+  - bash>=5.0               # Required for bash scripts (set -euo pipefail)
+
+  # ── Analysis and visualisation (optional but recommended) ─────────────────
+  - python>=3.10
+  - numpy
+  - matplotlib
+  - pandas
+  - mdanalysis            # Python-based trajectory analysis
+  - nglview               # Interactive 3D trajectory viewer in Jupyter
+  - jupyter
+  - jupyterlab
+
+  # ── Structure preparation utilities ───────────────────────────────────────
+  - pymol-open-source     # Structure cleaning and visualisation
+  - openbabel             # File format conversion (mol2 ↔ pdb ↔ sdf)
+

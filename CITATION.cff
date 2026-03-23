@@ -13,6 +13,7 @@ abstract: >-
 authors:
   - family-names: "Khan Utman"
     given-names: "Jalal"
+    name-particle: "Mr."
     affiliation: "PAF-IAST, Pakistan"
   - family-names: "Khan"
     given-names: "Muhammad Imran"
