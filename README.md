@@ -46,9 +46,19 @@ This repository provides a **complete, production-ready MD simulation protocol**
 | ⚙️ **Realistic MDP files** | Fully commented parameter files for EM, NVT, NPT, production |
 | 🏫 **HPC templates** | SLURM job scripts for university GPU clusters |
 | 📁 **Shared config** | One `config.env` file — edit once, all scripts inherit |
-| 📚 **Step-by-step docs** | Nine numbered guides covering every stage |
+| 📚 **Step-by-step docs** | Ten numbered guides covering every stage |
 | 🔒 **Smart `.gitignore`** | Prevents accidental upload of trajectories and results |
 | 📦 **Conda environment** | `environment.yml` for exact reproducibility |
+| 🔀 **Two complete workflows** | CHARMM-GUI/CGenFF (primary) + ACPYPE/GAFF2 (alternative) |
+
+### Choose Your Workflow
+
+| Workflow | Ligand Parameters | Best For |
+|---|---|---|
+| **Primary — CHARMM-GUI/CGenFF** | CGenFF (high accuracy, manually via website) | Publications, research-grade simulations |
+| **Alternative — ACPYPE/GAFF2** | GAFF2 (automated via `antechamber`) | Quick prototyping, learning, scripted pipelines |
+
+See [`workflows/acpype/README.md`](workflows/acpype/README.md) for the ACPYPE workflow.
 
 > **No simulation results are included.**  
 > This repository contains only templates, scripts, and documentation.
@@ -270,6 +280,12 @@ gromacs-md-protocol/
 ├── 📁 templates/
 │   └── slurm/
 │       └── gmx_gpu.slurm          ← SLURM GPU job template for HPC
+│
+├── 📁 workflows/
+│   └── acpype/                    ← Alternative workflow: ACPYPE + GAFF2 ligand params
+│       ├── README.md              ← ACPYPE workflow overview and quick start
+│       ├── scripts/               ← Scripts 01–09 + run_complete_workflow.sh
+│       └── docs/                  ← Step-by-step docs for each ACPYPE stage
 │
 ├── 📁 work/                       ← Created at runtime; gitignored
 └── 📁 results/                    ← Created at runtime; gitignored

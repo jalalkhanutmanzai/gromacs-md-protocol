@@ -1,90 +1,133 @@
-# ─────────────────────────────────────────────────────────────────────────────
-# Makefile — Convenience targets for the GROMACS MD Protocol
+# Makefile - Convenience targets for the GROMACS MD Protocol
 #
 # Usage:
 #   make help        Show all available targets
-#   make all         Run the full pipeline (steps 01–07)
+#   make all         Run the primary pipeline (steps 01-07, CHARMM-GUI workflow)
+#   make acpype-all  Run the ACPYPE/GAFF2 pipeline (steps 01-09)
 #   make check       Run system check only
-#   make clean       Remove work/ and results/ directories
-# ─────────────────────────────────────────────────────────────────────────────
+#   make clean       Remove work/, results/, simulation/ directories
 
-SHELL := /bin/bash
-SCRIPTS := scripts
+SHELL  := /bin/bash
+SCRIPT := scripts
+ACPYPE := workflows/acpype/scripts
 
-.PHONY: help all check topology solvate em nvt npt md analysis clean config
+.PHONY: help all check topology solvate em nvt npt md analysis clean config env \
+        acpype-all acpype-protein acpype-ligand acpype-topology acpype-solvate \
+        acpype-em acpype-nvt acpype-npt acpype-md acpype-analysis
 
-# ── Default target ────────────────────────────────────────────────────────────
+# Default target: help
 help:
-@echo ""
-@echo "  GROMACS Protein–Ligand MD Protocol — Make Targets"
-@echo "  ══════════════════════════════════════════════════"
-@echo ""
-@echo "  Setup"
-@echo "    make config     Copy config.env.example → config/config.env"
-@echo "    make check      Run system check (GROMACS + GPU)"
-@echo ""
-@echo "  Pipeline stages"
-@echo "    make topology   Step 01 — Prepare protein-ligand topology"
-@echo "    make solvate    Step 02 — Solvate + add ions"
-@echo "    make em         Step 03 — Energy minimisation"
-@echo "    make nvt        Step 04 — NVT equilibration"
-@echo "    make npt        Step 05 — NPT equilibration"
-@echo "    make md         Step 06 — Production MD (100 ns)"
-@echo "    make analysis   Step 07 — Analysis (RMSD, RMSF, Rg…)"
-@echo ""
-@echo "  Full run"
-@echo "    make all        Run full pipeline (steps 01–07)"
-@echo ""
-@echo "  Utilities"
-@echo "    make clean      Remove work/ and results/ directories"
-@echo "    make env        Create conda environment from environment.yml"
-@echo ""
+	@echo ""
+	@echo "  GROMACS Protein-Ligand MD Protocol -- Make Targets"
+	@echo "  ==================================================="
+	@echo ""
+	@echo "  Setup:"
+	@echo "    make config     Create config/config.env from example"
+	@echo "    make check      System check (GROMACS + GPU)"
+	@echo "    make env        Create conda environment (gmx2024)"
+	@echo ""
+	@echo "  Primary workflow (CHARMM-GUI / CGenFF):"
+	@echo "    make topology   Step 01 -- Prepare protein-ligand topology"
+	@echo "    make solvate    Step 02 -- Solvate + add ions"
+	@echo "    make em         Step 03 -- Energy minimisation"
+	@echo "    make nvt        Step 04 -- NVT equilibration"
+	@echo "    make npt        Step 05 -- NPT equilibration"
+	@echo "    make md         Step 06 -- Production MD (100 ns)"
+	@echo "    make analysis   Step 07 -- Analysis (RMSD, RMSF, Rg, SASA)"
+	@echo "    make all        Run full primary pipeline (steps 01-07)"
+	@echo ""
+	@echo "  Alternative workflow (ACPYPE / GAFF2):"
+	@echo "    make acpype-protein    Step 01 -- Download & clean protein"
+	@echo "    make acpype-ligand     Step 02 -- Parameterise ligand"
+	@echo "    make acpype-topology   Step 03 -- Build system topology"
+	@echo "    make acpype-solvate    Step 04 -- Solvate + add ions"
+	@echo "    make acpype-em         Step 05 -- Energy minimisation"
+	@echo "    make acpype-nvt        Step 06 -- NVT equilibration"
+	@echo "    make acpype-npt        Step 07 -- NPT equilibration"
+	@echo "    make acpype-md         Step 08 -- Production MD"
+	@echo "    make acpype-analysis   Step 09 -- Analysis"
+	@echo "    make acpype-all        Run full ACPYPE pipeline (steps 01-09)"
+	@echo ""
+	@echo "  Utilities:"
+	@echo "    make clean      Remove work/, results/, simulation/"
+	@echo ""
 
-# ── Setup ─────────────────────────────────────────────────────────────────────
+# Setup
 config:
-@if [ -f config/config.env ]; then \
-echo "[INFO] config/config.env already exists. Edit it directly."; \
-else \
-cp config/config.env.example config/config.env; \
-echo "[OK] config/config.env created. Edit it before running simulations."; \
-fi
+	@if [ -f config/config.env ]; then \
+		echo "[INFO] config/config.env already exists. Edit it directly."; \
+	else \
+		cp config/config.env.example config/config.env; \
+		echo "[OK] config/config.env created. Edit it before running simulations."; \
+	fi
 
 env:
-conda env create -f environment.yml
-@echo "[OK] Run: conda activate gmx2024"
+	conda env create -f environment.yml
+	@echo "[OK] Run: conda activate gmx2024"
 
-# ── Pipeline stages ───────────────────────────────────────────────────────────
+# System check
 check:
-bash $(SCRIPTS)/00_system_check.sh
+	bash $(SCRIPT)/00_system_check.sh
 
+# Primary pipeline (CHARMM-GUI / CGenFF)
 topology:
-bash $(SCRIPTS)/01_prepare_topology.sh
+	bash $(SCRIPT)/01_prepare_topology.sh
 
 solvate:
-bash $(SCRIPTS)/02_solvate_ions.sh
+	bash $(SCRIPT)/02_solvate_ions.sh
 
 em:
-bash $(SCRIPTS)/03_em.sh
+	bash $(SCRIPT)/03_em.sh
 
 nvt:
-bash $(SCRIPTS)/04_nvt.sh
+	bash $(SCRIPT)/04_nvt.sh
 
 npt:
-bash $(SCRIPTS)/05_npt.sh
+	bash $(SCRIPT)/05_npt.sh
 
 md:
-bash $(SCRIPTS)/06_md.sh
+	bash $(SCRIPT)/06_md.sh
 
 analysis:
-bash $(SCRIPTS)/07_analysis.sh
+	bash $(SCRIPT)/07_analysis.sh
 
-# ── Full pipeline ─────────────────────────────────────────────────────────────
 all:
-bash $(SCRIPTS)/run_complete_workflow.sh
+	bash $(SCRIPT)/run_complete_workflow.sh
 
-# ── Utilities ─────────────────────────────────────────────────────────────────
+# ACPYPE / GAFF2 alternative workflow
+acpype-protein:
+	bash $(ACPYPE)/01_prepare_protein.sh
+
+acpype-ligand:
+	bash $(ACPYPE)/02_prepare_ligand.sh
+
+acpype-topology:
+	bash $(ACPYPE)/03_build_topology.sh
+
+acpype-solvate:
+	bash $(ACPYPE)/04_solvation_ions.sh
+
+acpype-em:
+	bash $(ACPYPE)/05_energy_minimization.sh
+
+acpype-nvt:
+	bash $(ACPYPE)/06_nvt_equilibration.sh
+
+acpype-npt:
+	bash $(ACPYPE)/07_npt_equilibration.sh
+
+acpype-md:
+	bash $(ACPYPE)/08_production_md.sh
+
+acpype-analysis:
+	bash $(ACPYPE)/09_analysis.sh
+
+acpype-all:
+	bash $(ACPYPE)/run_complete_workflow.sh
+
+# Clean
 clean:
-@echo "[WARN] This will delete work/ and results/ directories."
-@read -p "Are you sure? [y/N] " confirm && [ "$$confirm" = "y" ] || exit 1
-rm -rf work/ results/
-@echo "[OK] Cleaned."
+	@echo "[WARN] This will delete work/, results/, and simulation/ directories."
+	@read -p "Are you sure? [y/N] " confirm && [ "$$confirm" = "y" ] || exit 1
+	rm -rf work/ results/ simulation/
+	@echo "[OK] Cleaned."
