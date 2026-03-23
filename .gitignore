@@ -1,6 +1,75 @@
+# ─── GROMACS binary output / trajectory files ──────────────────────────────
 *.xtc
 *.trr
 *.edr
+*.tpr
+*.cpt
+*.log
+*.gro
+*.top
+*.itp
+*.ndx
+
+# ─── GROMACS backup files ────────────────────────────────────────────────────
+\#*
+*.bak
+
+# ─── GROMACS mdout / preprocessor dumps ─────────────────────────────────────
+mdout.mdp
+md.mdp.bak
+
+# ─── Coordinate / structure files that contain unpublished system data ───────
 *.pdb
+*.mol2
+*.sdf
+
+# ─── Output directories (simulation results — never commit these) ─────────────
+work/
 results/
+tmp/
+output/
+
+# ─── Analysis output ─────────────────────────────────────────────────────────
+*.xvg
+*.xpm
+*.eps
+*.dat
+analysis/
+
+# ─── Plots ───────────────────────────────────────────────────────────────────
+*.png
+*.pdf
+*.svg
+*.jpg
+*.jpeg
+
+# ─── Archives ────────────────────────────────────────────────────────────────
 *.zip
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+
+# ─── Conda / Python ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+env/
+
+# ─── OS noise ────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ─── Editor ──────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ─── Config override (users copy config.env.example → config/config.env) ────
+config/config.env
+

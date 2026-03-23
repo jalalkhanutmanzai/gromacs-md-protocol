@@ -1,3 +1,61 @@
-integrator = md
-dt = 0.002
-nsteps = 50000
+; ─────────────────────────────────────────────────────────────────────────────
+; nvt.mdp — NVT equilibration (100 ps, 300 K, constant volume)
+; GROMACS 2024.x  |  CHARMM36m + CGenFF  |  TIP3P water
+; ─────────────────────────────────────────────────────────────────────────────
+
+; Run control
+integrator               = md         ; leap-frog MD integrator
+nsteps                   = 50000      ; 100 ps  (50 000 steps × 2 fs)
+dt                       = 0.002      ; time step (ps)
+
+; Output control
+nstxout                  = 0          ; write coordinates to TRR: off
+nstvout                  = 0          ; write velocities to TRR: off
+nstfout                  = 0          ; write forces: off
+nstxout-compressed       = 500        ; write compressed trajectory every 1 ps
+nstenergy                = 500        ; write energies every 1 ps
+nstlog                   = 500        ; write to log every 1 ps
+
+; Neighbour searching
+cutoff-scheme            = Verlet
+nstlist                  = 10
+ns_type                  = grid
+pbc                      = xyz
+
+; Electrostatics
+coulombtype              = PME
+rcoulomb                 = 1.2
+pme_order                = 4
+fourierspacing           = 0.12
+
+; Van der Waals
+vdwtype                  = Cut-off
+vdw-modifier             = Force-switch
+rvdw                     = 1.2
+rvdw-switch              = 1.0
+DispCorr                 = no
+
+; Bonds
+constraints              = h-bonds    ; constrain all X-H bonds
+constraint-algorithm     = LINCS
+lincs-iter               = 1
+lincs-order              = 4
+continuation             = no         ; this is the first MD run (not a restart)
+
+; Temperature coupling — V-rescale with separate groups
+tcoupl                   = V-rescale
+tc-grps                  = Protein_LIG Water_and_ions
+tau_t                    = 0.1        0.1
+ref_t                    = 300        300
+
+; Pressure coupling — off during NVT
+pcoupl                   = no
+
+; Velocity generation
+gen_vel                  = yes        ; generate velocities from Maxwell-Boltzmann
+gen_temp                 = 300        ; initial temperature (K)
+gen_seed                 = -1         ; set to a fixed integer for reproducibility
+
+; Position restraints — activated by -DPOSRES (defined in grompp call)
+define                   = -DPOSRES
+

@@ -1,3 +1,72 @@
-integrator = md
-dt = 0.002
-nsteps = 50000000
+; ─────────────────────────────────────────────────────────────────────────────
+; md_100ns.mdp — Production MD (100 ns NPT)
+; GROMACS 2024.x  |  CHARMM36m + CGenFF  |  TIP3P water
+;
+; To change duration, adjust nsteps:
+;   10 ns  →  nsteps = 5000000
+;   50 ns  →  nsteps = 25000000
+;   100 ns →  nsteps = 50000000 (default)
+; ─────────────────────────────────────────────────────────────────────────────
+
+; Run control
+integrator               = md
+nsteps                   = 50000000   ; 100 ns  (50 000 000 steps × 2 fs)
+dt                       = 0.002      ; time step (ps)
+
+; Output control
+; Frames written every 5000 steps = every 10 ps → 10 000 frames for 100 ns
+nstxout                  = 0          ; TRR position output: off (use XTC)
+nstvout                  = 0          ; TRR velocity output: off
+nstfout                  = 0          ; TRR force output: off
+nstxout-compressed       = 5000       ; write compressed XTC every 10 ps
+compressed-x-precision   = 1000       ; XTC precision
+nstenergy                = 5000       ; write energies every 10 ps
+nstlog                   = 5000       ; write to log every 10 ps
+
+; Neighbour searching
+cutoff-scheme            = Verlet
+nstlist                  = 20         ; update list every 20 steps for GPU
+ns_type                  = grid
+pbc                      = xyz
+
+; Electrostatics
+coulombtype              = PME
+rcoulomb                 = 1.2
+pme_order                = 4
+fourierspacing           = 0.12
+
+; Van der Waals
+vdwtype                  = Cut-off
+vdw-modifier             = Force-switch
+rvdw                     = 1.2
+rvdw-switch              = 1.0
+DispCorr                 = no
+
+; Bonds — constrain H-bonds to allow 2 fs time step
+constraints              = h-bonds
+constraint-algorithm     = LINCS
+lincs-iter               = 1
+lincs-order              = 4
+lincs-warnangle          = 30         ; warn if constraint angle exceeds this
+continuation             = yes        ; continuing from NPT equilibration
+
+; Temperature coupling
+tcoupl                   = V-rescale
+tc-grps                  = Protein_LIG Water_and_ions
+tau_t                    = 0.1        0.1
+ref_t                    = 300        300
+
+; Pressure coupling
+pcoupl                   = Parrinello-Rahman
+pcoupltype               = isotropic
+tau_p                    = 2.0
+ref_p                    = 1.0
+compressibility          = 4.5e-5
+refcoord-scaling         = com
+
+; Velocity generation — off (velocities from NPT)
+gen_vel                  = no
+
+; Position restraints — off for production (no define)
+; define                 = (empty — do NOT use -DPOSRES here)
+

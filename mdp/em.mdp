@@ -1,3 +1,38 @@
-integrator = steep
-nsteps = 5000
-emtol = 1000.0
+; ─────────────────────────────────────────────────────────────────────────────
+; em.mdp — Energy minimisation
+; GROMACS 2024.x  |  CHARMM36m + CGenFF  |  TIP3P water
+; ─────────────────────────────────────────────────────────────────────────────
+
+; Run control
+integrator               = steep      ; steepest-descent minimiser
+nsteps                   = 50000      ; maximum number of minimisation steps
+emtol                    = 1000.0     ; stop when max force < 1000 kJ mol-1 nm-1
+emstep                   = 0.01       ; initial step size (nm)
+
+; Output control
+nstxout                  = 500        ; write coordinates every 500 steps
+nstenergy                = 500        ; write energies every 500 steps
+nstlog                   = 500        ; write to log every 500 steps
+
+; Neighbour searching
+cutoff-scheme            = Verlet     ; buffered Verlet list (only supported scheme)
+nstlist                  = 10         ; update neighbour list every 10 steps
+ns_type                  = grid       ; neighbour search method
+pbc                      = xyz        ; periodic boundary conditions in all directions
+
+; Electrostatics
+coulombtype              = PME        ; Particle-Mesh Ewald electrostatics
+rcoulomb                 = 1.2        ; short-range electrostatic cut-off (nm)
+pme_order                = 4          ; cubic interpolation
+fourierspacing           = 0.12       ; grid spacing for FFT (nm)
+
+; Van der Waals
+vdwtype                  = Cut-off
+vdw-modifier             = Force-switch   ; CHARMM-recommended modifier
+rvdw                     = 1.2        ; short-range VdW cut-off (nm)
+rvdw-switch              = 1.0        ; start switching at 1.0 nm (CHARMM convention)
+DispCorr                 = no         ; no long-range dispersion correction for CHARMM
+
+; Constraints (none for EM — let all bonds relax freely)
+constraints              = none
+
