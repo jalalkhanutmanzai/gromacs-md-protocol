@@ -408,7 +408,7 @@ Contributions are welcome! See **[CONTRIBUTING.md](CONTRIBUTING.md)** for:
 | Name | Role | Affiliation | Contribution |
 |---|---|---|---|
 | **Jalal Khan Utman** | MS Biotechnology Student | PAF-IAST, Pakistan | Lead developer — designed the full protocol, wrote all scripts and MDP files, authored all documentation, built and maintains the repository |
-| **Muhammad Imran Khan** | Assistant Professor | PAF-IAST, Pakistan | Academic supervisor — provided scientific direction, validated methodology, oversaw the project |
+| **Dr. Muhammad Imran Khan** | Assistant Professor | PAF-IAST, Pakistan | Academic supervisor — provided scientific direction, validated methodology, oversaw the project |
 | **Tayyaba Riyaz** | AI Developer, Lecturer | PAF-IAST, Pakistan | Contributed AI-assisted documentation, troubleshooting guides, and workflow testing |
 
 ---
