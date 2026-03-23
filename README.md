@@ -166,11 +166,51 @@ See `.gitignore` for the full list.
 
 ---
 
+## Citation (mandatory)
+
+> **If you use this repository — in whole or in part — for any purpose
+> (research, teaching, derivative software, publications, or any other work),
+> you MUST cite it.**  
+> This is a condition of use under the repository license.
+
+### How to cite
+
+**APA (7th edition)**
+
+> Khan Utman, J., Khan, M. I., & Riyaz, T. (2024).
+> *GROMACS protein–ligand MD protocol* [Software].
+> GitHub. https://github.com/jalalkhanutmanzai/gromacs-md-protocol
+
+**BibTeX**
+
+```bibtex
+@software{khan_utman_gromacs_md_protocol,
+  author       = {Khan Utman, Jalal and Khan, Muhammad Imran and Riyaz, Tayyaba},
+  title        = {{GROMACS Protein--Ligand MD Protocol}},
+  year         = {2024},
+  publisher    = {GitHub},
+  url          = {https://github.com/jalalkhanutmanzai/gromacs-md-protocol},
+  note         = {Accessed: \today}
+}
+```
+
+**IEEE**
+
+> J. Khan Utman, M. I. Khan, and T. Riyaz, "GROMACS Protein–Ligand MD
+> Protocol," GitHub, 2024. [Online]. Available:
+> https://github.com/jalalkhanutmanzai/gromacs-md-protocol
+
+A machine-readable `CITATION.cff` file is also included in this repository.
+GitHub displays a **"Cite this repository"** button on the main page that
+generates formatted citations automatically.
+
+---
+
 ## Team
 
 - **Jalal Khan Utman** — MS Biotechnology, PAF-IAST
 - **Dr. Muhammad Imran Khan** — Assistant Professor, PAF-IAST
-- **Miss Tayyaba Ayaz** — AI Developer, Lecturer, PAF-IAST
+- **Miss Tayyaba Riyaz** — AI Developer, Lecturer, PAF-IAST
 
 ---
 

@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: >-
+  If you use this repository — in whole or in part — for any purpose
+  (research, teaching, derivative software, publications, or any other work),
+  you MUST cite it using the metadata below.
+title: "GROMACS Protein–Ligand MD Protocol"
+abstract: >-
+  A reproducible, beginner-friendly, GPU-ready GROMACS molecular dynamics
+  protocol for protein–ligand systems. Includes step-by-step documentation,
+  runnable bash scripts, realistic MDP parameter templates, SLURM HPC job
+  templates, and a strict .gitignore to prevent accidental upload of
+  unpublished simulation results. Ligand parameterisation via CHARMM-GUI/CGenFF.
+authors:
+  - family-names: "Khan Utman"
+    given-names: "Jalal"
+    affiliation: "PAF-IAST, Pakistan"
+  - family-names: "Khan"
+    given-names: "Muhammad Imran"
+    name-suffix: "Dr."
+    affiliation: "PAF-IAST, Pakistan"
+  - family-names: "Riyaz"
+    given-names: "Tayyaba"
+    affiliation: "PAF-IAST, Pakistan"
+type: software
+repository-code: "https://github.com/jalalkhanutmanzai/gromacs-md-protocol"
+license: MIT
+date-released: "2024-01-01"
+keywords:
+  - GROMACS
+  - molecular dynamics
+  - protein-ligand
+  - MD simulation
+  - CHARMM36
+  - CGenFF
+  - GPU
+  - reproducible research
+  - bioinformatics
+  - computational chemistry
