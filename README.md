@@ -364,7 +364,7 @@ See `.gitignore` for the full list. **Never commit:**
 
 **APA (7th edition)**
 
-> Khan Utman, M. J., Khan, M. I., & Riyaz, T. (2024).
+> Khan Utman, J., Khan, M. I., & Riyaz, T. (2026).
 > *GROMACS protein–ligand MD protocol* [Software].
 > GitHub. https://github.com/jalalkhanutmanzai/gromacs-md-protocol
 
@@ -374,7 +374,7 @@ See `.gitignore` for the full list. **Never commit:**
 @software{khan_utman_gromacs_md_protocol,
   author       = {Khan Utman, Jalal and Khan, Muhammad Imran and Riyaz, Tayyaba},
   title        = {{GROMACS Protein--Ligand MD Protocol}},
-  year         = {2024},
+  year         = {2026},
   publisher    = {GitHub},
   url          = {https://github.com/jalalkhanutmanzai/gromacs-md-protocol},
   note         = {Accessed: \today}
@@ -383,8 +383,8 @@ See `.gitignore` for the full list. **Never commit:**
 
 **IEEE**
 
-> M. J. Khan Utman, M. I. Khan, and T. Riyaz, "GROMACS Protein–Ligand MD
-> Protocol," GitHub, 2024. [Online]. Available:
+> J. Khan Utman, M. I. Khan, and T. Riyaz, "GROMACS Protein–Ligand MD
+> Protocol," GitHub, 2026. [Online]. Available:
 > https://github.com/jalalkhanutmanzai/gromacs-md-protocol
 
 > 💡 A machine-readable `CITATION.cff` file is included.  
@@ -405,11 +405,11 @@ Contributions are welcome! See **[CONTRIBUTING.md](CONTRIBUTING.md)** for:
 
 ## 👥 Team
 
-| Name | Role | Affiliation |
-|---|---|---|
-| **Mr. Jalal Khan Utman** | MS Biotechnology | PAF-IAST, Pakistan |
-| **Dr. Muhammad Imran Khan** | Assistant Professor | PAF-IAST, Pakistan |
-| **Miss Tayyaba Riyaz** | AI Developer, Lecturer | PAF-IAST, Pakistan |
+| Name | Role | Affiliation | Contribution |
+|---|---|---|---|
+| **Jalal Khan Utman** | MS Biotechnology Student | PAF-IAST, Pakistan | Lead developer — designed the full protocol, wrote all scripts and MDP files, authored all documentation, built and maintains the repository |
+| **Muhammad Imran Khan** | Assistant Professor | PAF-IAST, Pakistan | Academic supervisor — provided scientific direction, validated methodology, oversaw the project |
+| **Tayyaba Riyaz** | AI Developer, Lecturer | PAF-IAST, Pakistan | Contributed AI-assisted documentation, troubleshooting guides, and workflow testing |
 
 ---
 

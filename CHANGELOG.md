@@ -22,7 +22,7 @@ significant workflow and documentation changes.
 - `README.md` — full overhaul with badges, table of contents, visual workflow
   diagram, and improved formatting throughout
 - Team member name corrected: **Tayyaba Ayaz → Tayyaba Riyaz**
-- Title updated: **Mr. Jalal Khan Utman** (with honorific)
+- Title updated: **Jalal Khan Utman** (honorific removed; names cited without titles per academic standard)
 - Citation section prominently restructured with APA, BibTeX, and IEEE formats
 
 ### Fixed
@@ -30,7 +30,7 @@ significant workflow and documentation changes.
 
 ---
 
-## [1.0.0] — 2024-01-01
+## [1.0.0] — 2026-03-23
 
 ### Added
 - Initial release of the complete GROMACS protein–ligand MD protocol

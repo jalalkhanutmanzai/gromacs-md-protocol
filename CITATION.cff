@@ -13,19 +13,20 @@ abstract: >-
 authors:
   - family-names: "Khan Utman"
     given-names: "Jalal"
-    name-particle: "Mr."
     affiliation: "PAF-IAST, Pakistan"
+    alias: "Lead developer. Designed the full protocol, wrote all scripts and MDP files, authored all documentation, and built the repository."
   - family-names: "Khan"
     given-names: "Muhammad Imran"
-    name-suffix: "Dr."
     affiliation: "PAF-IAST, Pakistan"
+    alias: "Academic supervisor. Provided scientific direction, validated methodology, and supervised the project."
   - family-names: "Riyaz"
     given-names: "Tayyaba"
     affiliation: "PAF-IAST, Pakistan"
+    alias: "Contributed AI-assisted documentation, troubleshooting guides, and workflow testing."
 type: software
 repository-code: "https://github.com/jalalkhanutmanzai/gromacs-md-protocol"
 license: MIT
-date-released: "2024-01-01"
+date-released: "2026-03-23"
 keywords:
   - GROMACS
   - molecular dynamics
