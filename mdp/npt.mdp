@@ -1,0 +1,4 @@
+integrator = md
+dt = 0.002
+nsteps = 50000
+pcoupl = Parrinello-Rahman

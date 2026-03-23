@@ -1,0 +1,6 @@
+*.xtc
+*.trr
+*.edr
+*.pdb
+results/
+*.zip
